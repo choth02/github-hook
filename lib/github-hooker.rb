@@ -25,7 +25,7 @@ module Github
       response = JSON.parse(response)
     end
 
-    def self.list_hooks(options={})
+    def self.hooks(options={})
       request_options = {
         :method => :get,
         :url => "https://api.github.com/repos/#{options[:repo]}/hooks",
@@ -35,13 +35,6 @@ module Github
       }
       response = RestClient::Request.execute(request_options)
       response = JSON.parse(response)
-
-      response.each do |hook|
-        puts "#{hook['url']}"
-        puts "> name:   #{hook['name']}"
-        puts "> events: #{hook['events'].join(", ")}"
-        puts
-      end
     end
 
     def self.config

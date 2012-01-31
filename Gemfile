@@ -5,3 +5,6 @@ gemspec
 
 gem 'rspec'
 gem 'webmock'
+gem 'guard'
+gem 'guard-bundler'
+gem 'guard-rspec'

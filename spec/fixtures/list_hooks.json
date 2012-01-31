@@ -1,0 +1,47 @@
+[
+    {
+        "updated_at": "2012-01-26T16:11:55Z",
+        "last_response": {
+            "message": "",
+            "code": 200
+        },
+        "created_at": "2012-01-26T13:29:53Z",
+        "events": [
+            "push",
+            "issues",
+            "issue_comment",
+            "commit_comment",
+            "pull_request"
+        ],
+        "name": "campfire",
+        "config": {
+            "long_url": "1",
+            "token": "aaaaaaaaaaaaaaaaa",
+            "subdomain": "company",
+            "room": "room"
+        },
+        "id": 157257,
+        "url": "https://api.github.com/repos/user/repo/hooks/157257",
+        "active": true
+    },
+    {
+        "updated_at": "2012-01-26T13:56:25Z",
+        "last_response": {
+            "message": null,
+            "code": null
+        },
+        "created_at": "2012-01-26T13:55:42Z",
+        "events": [
+            "issue_comment"
+        ],
+        "name": "web",
+        "config": {
+            "content_type": "form",
+            "url": "http://mycallback.com/callback",
+            "secret": null
+        },
+        "id": 157271,
+        "url": "https://api.github.com/repos/user/repo/hooks/157271",
+        "active": true
+    }
+]
