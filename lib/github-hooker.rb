@@ -3,46 +3,31 @@ require 'net/http'
 require 'json'
 require 'yaml'
 require 'restclient'
+require 'active_support/core_ext/hash/reverse_merge'
 
 module Github
   module Hooker
-
-    def self.add_hook(options={})
-      payload = {
-        :name => options[:name],
-        :events => options[:events],
-        :active => true,
-      }
-
-      request_options = {
-        :method => :post,
-        :url => "https://api.github.com/repos/#{options[:repo]}/hooks",
-        :user => config[:user],
-        :password => config[:password],
-        :payload => payload
-      }
-      response = RestClient::Request.execute(request_options)
-      response = JSON.parse(response)
+    def self.hooks(repo, payload={})
+      github_api(:get, repo, payload)
     end
 
-    def self.hooks(options={})
-      request_options = {
-        :method => :get,
-        :url => "https://api.github.com/repos/#{options[:repo]}/hooks",
-        :user => config["user"],
-        :password => config["password"],
-        :ssl => true
-      }
-      response = RestClient::Request.execute(request_options)
-      response = JSON.parse(response)
+    def self.add_hook(repo, payload={})
+      payload = payload.reverse_merge(:active => true)
+      github_api(:post, repo, :payload => payload)
     end
 
     def self.config
       @config ||= YAML.load_file(File.expand_path("~/.github-hooker.yml"))
     end
 
-    def self.github_api
-
+    def self.github_api(method, repo, options)
+      options.reverse_merge!(
+        :method => method,
+        :url => "https://api.github.com/repos/#{repo}/hooks",
+        :user => config["user"],
+        :password => config["password"]
+      )
+      JSON.parse(RestClient::Request.execute(options))
     end
   end
 end
