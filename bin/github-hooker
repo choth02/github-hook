@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.expand_path("../../lib", __FILE__)
+require "thor"
+require 'github-hooker'
+require 'github-hooker/cli'
+
+Github::Hooker::CLI.start
+
+# :vim:ft=ruby
