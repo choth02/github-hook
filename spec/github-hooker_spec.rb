@@ -54,7 +54,7 @@ describe Github::Hooker do
 
     it "deletes a hook in the given repo" do
       WebMock.stub_request(:delete, "https://user:password@api.github.com/repos/user/repo/hooks/1010").
-         to_return(:status => 200, :body => "{}", :headers => {})
+         to_return(:status => 200, :body => "", :headers => {})
 
       subject.delete_hook("user/repo", 1010)
     end

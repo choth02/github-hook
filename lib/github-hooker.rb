@@ -34,7 +34,12 @@ module Github
         :user => config["user"],
         :password => config["password"]
       )
-      JSON.parse(RestClient::Request.execute(options))
+      response = RestClient::Request.execute(options)
+      begin
+        JSON.parse(response)
+      rescue JSON::ParserError
+        response
+      end
     end
 
     def self.config_filename
