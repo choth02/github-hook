@@ -1,10 +1,10 @@
 # github-hooker
 
-This is an internal gem at PlataformaTec.
+This is an internal gem at PlataformaTec (<http://plataformatec.com.br>)
 
 ## Configuration
 
-First, create ~/.github-hooker.yml with
+First, create `~/.github-hooker.yml` with
 
 ```yml
 user: github_username
@@ -21,6 +21,18 @@ Then you can use the command `github-hooker` to list, create web and campfire ho
 ## Usage
 
 The user specified MUST have administration rights for the repositories you want to set/delete hooks.
+
+The available commands are:
+
+```
+$ github-hooker
+Tasks:
+  github-hooker help [TASK]                                                  # Describe available tasks or one specific task
+  github-hooker list user/repo                                               # List hooks in the given repository
+  github-hooker web user/repo events --url=URL                               # Add a web hook in the given repository. Events must be separated by commas.
+  github-hooker campfire user/repo events --room=ROOM --subdomain=SUBDOMAIN  # Add a campfire hook in the given repository. Events must be separated by commas.
+  github-hooker delete user/repo hook_number                                 # Delete the hook from the given repository
+```
 
 ### List hooks
 
@@ -71,8 +83,6 @@ Web events:
 
 Github's documentation about hooks (http://developer.github.com/v3/repos/hooks/ and https://api.github.com/hooks) does not have all these hooks listed, but they are working with us.
 
-
 ## License
 
-upcoming!
-
+MIT License. Copyright 2012 Plataforma Tecnologia. http://blog.plataformatec.com.br
