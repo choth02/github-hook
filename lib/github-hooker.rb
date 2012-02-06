@@ -24,9 +24,7 @@ module Github
     end
 
     def self.config
-      @config ||= YAML.load_file(File.expand_path("~/.github-hooker.yml"))
-    rescue Errno::ENOENT
-      puts "You need to setup your ~/.github-hooker.yml"
+      @config ||= YAML.load_file(File.expand_path(config_filename))
     end
 
     def self.github_api(method, url, options={})
@@ -37,6 +35,10 @@ module Github
         :password => config["password"]
       )
       JSON.parse(RestClient::Request.execute(options))
+    end
+
+    def self.config_filename
+      "~/.github-hooker.yml"
     end
   end
 end
