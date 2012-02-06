@@ -10,6 +10,7 @@ describe "github-hooker" do
   before do
     Github::Hooker.stub(:config_filename).and_return("/tmp/.github-hooker.yml")
     FileUtils.touch(Github::Hooker.config_filename)
+    stub_config!
   end
 
   describe "list" do
@@ -28,28 +29,33 @@ describe "github-hooker" do
       subject.list("user/repo")
     end
 
-    it "displays an error essage if ~/.github-hooker.yml is not present" do
-    end
+    it "handles 404 errors in github API" do
+      WebMock.stub_request(:get, "https://user:password@api.github.com/repos/user/non-existent-repo/hooks").
+        to_return(:status => 404, :body => "NotFound", :headers => {})
 
-    describe "campfire" do
-      it "calls Github::Hooker with the correct arguments" do
-        Github::Hooker.stub(:add_hook).with("user/repo", {:name => "campfire", :events => ["pull_requests", "issue"], :config => {}})
-        subject.campfire("user/repo", "pull_requests, issue")
-      end
+      $stdout.should_receive(:puts).with("Resource Not Found (404): This repository may not exist or you may not have access to it.")
+      expect { subject.list("user/non-existent-repo") }.to raise_error(SystemExit)
     end
+  end
 
-    describe "web" do
-      it "calls Github::Hooker with the correct arguments" do
-        Github::Hooker.stub(:add_hook).with("user/repo", {:name => "web", :events => ["pull_requests", "issue"], :config => {}})
-        subject.web("user/repo", "pull_requests, issue")
-      end
+  describe "campfire" do
+    it "calls Github::Hooker with the correct arguments" do
+      Github::Hooker.stub(:add_hook).with("user/repo", {:name => "campfire", :events => ["pull_requests", "issue"], :config => {}})
+      subject.campfire("user/repo", "pull_requests, issue")
     end
+  end
 
-    describe "delete" do
-      it "calls Github::Hooker with the correct arguments" do
-        Github::Hooker.stub(:delete_hook).with("user/repo", 1010)
-        subject.delete("user/repo", 1010)
-      end
+  describe "web" do
+    it "calls Github::Hooker with the correct arguments" do
+      Github::Hooker.stub(:add_hook).with("user/repo", {:name => "web", :events => ["pull_requests", "issue"], :config => {}})
+      subject.web("user/repo", "pull_requests, issue")
+    end
+  end
+
+  describe "delete" do
+    it "calls Github::Hooker with the correct arguments" do
+      Github::Hooker.stub(:delete_hook).with("user/repo", 1010)
+      subject.delete("user/repo", 1010)
     end
   end
 end

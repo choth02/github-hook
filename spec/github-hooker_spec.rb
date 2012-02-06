@@ -4,7 +4,7 @@ require 'github-hooker'
 describe Github::Hooker do
   context "given a valid credential" do
     before do
-      Github::Hooker.stub(:config).and_return({ "user" => "user", "password" => "password", "campfire_token" => "token" })
+      stub_config!
     end
 
     it "lists the hooks in the given repo" do
