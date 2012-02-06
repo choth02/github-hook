@@ -12,7 +12,7 @@ password: github_password
 campfire_token: campfire_api_token
 ```
 
-*Why I need to write my password?*
+### Why I need to write my password?
 
 The hook API is only accessible by the v3 Github API. There's a Oauth2 authentication method, but in order to use that you would need to set up a new application with Github, and then collect the token by an http callback (that must be accessible on the web). For the sake of simplicity, we use the other way to authenticate (http auth basic).
 
