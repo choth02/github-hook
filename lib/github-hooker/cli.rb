@@ -8,6 +8,7 @@ module Github
           puts "#{hook['url']}"
           puts "> name:   #{hook['name']}"
           puts "> events: #{hook['events'].join(", ")}"
+          puts "> config: #{hook['config']}"
           puts
         end
       end
@@ -25,6 +26,11 @@ module Github
       def web(repo, events)
         events = split_events(events)
         puts Github::Hooker.add_hook(repo, :name => "web", :events => events, :config => options)
+      end
+
+      desc "delete user/repo hook", "Delete the hook 1111 from the given repository"
+      def delete(repo, hook)
+        puts Github::Hooker.delete_hook(repo, hook)
       end
 
       private
