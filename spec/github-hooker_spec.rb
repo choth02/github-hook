@@ -39,7 +39,7 @@ describe Github::Hooker do
     it "adds a new web hook in the given repo" do
       WebMock.stub_request(:post, "https://user:password@api.github.com/repos/user/repo/hooks").
         with(:body => "{\"active\":\"true\",\"name\":\"web\",\"events\":[\"pull_request\",\"issue\"],\"config\":{\"url\":\"http://example.com/callback\"}}").
-        to_return(:status => 200, :body => "{}", :headers => {})
+        to_return(:status => 201, :body => "{}", :headers => {})
 
       hook_options = {
         :name => "web",
@@ -54,7 +54,7 @@ describe Github::Hooker do
 
     it "deletes a hook in the given repo" do
       WebMock.stub_request(:delete, "https://user:password@api.github.com/repos/user/repo/hooks/1010").
-         to_return(:status => 200, :body => "", :headers => {})
+         to_return(:status => 204, :body => "", :headers => {})
 
       subject.delete_hook("user/repo", 1010)
     end

@@ -35,9 +35,10 @@ module Github
         :password => config["password"]
       )
       response = RestClient::Request.execute(options)
-      begin
+      case response.code
+      when 201, 200
         JSON.parse(response)
-      rescue JSON::ParserError
+      when 204, 404, 500
         response
       end
     end
