@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["george@plataformatec.com.br"]
   s.homepage    = ""
   s.summary     = %q{ hook them all }
-  s.description = %q{ hook them all }
+  s.description = %q{ github-hooker creates and deletes hooks in your github repository }
 
   s.rubyforge_project = "github-hooker"
 

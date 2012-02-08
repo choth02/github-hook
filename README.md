@@ -1,6 +1,8 @@
 # github-hooker
 
-This is an internal gem at PlataformaTec (<http://plataformatec.com.br>)
+This is an internal gem at PlataformaTec (<http://plataformatec.com.br>).
+
+We use it to create and delete hooks in our github repositories (like campfire notifications for push and pull_requests and CI integration with web push hooks).
 
 ## Configuration
 
