@@ -85,6 +85,12 @@ Web events:
 
 Github's documentation about hooks (http://developer.github.com/v3/repos/hooks/ and https://api.github.com/hooks) does not have all these hooks listed, but they are working with us.
 
+## Naming
+
+This gem is named after the famous [Hooker Telescope](http://en.wikipedia.org/wiki/Hooker_Telescope), in operation in the Mount Wilson Observatory. Edwin Hubble used this telescope to discover the expansion of the universe.
+
+![Hooker Telescope](http://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/100inchHooker.jpg/250px-100inchHooker.jpg)
+
 ## License
 
 MIT License. Copyright 2012 Plataforma Tecnologia. http://blog.plataformatec.com.br
