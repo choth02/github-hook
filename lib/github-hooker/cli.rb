@@ -8,9 +8,12 @@ module Github
           hooks = Github::Hooker.hooks(repo)
           hooks.each do |hook|
             puts "#{hook['url']}"
-            puts "> name:   #{hook['name']}"
-            puts "> events: #{hook['events'].join(", ")}"
-            puts "> config: #{hook['config']}"
+            puts "> name:       #{hook['name']}"
+            puts "> updated_at: #{hook['updated_at']}"
+            puts "> created_at: #{hook['created_at']}"
+            puts "> events:     #{hook['events'].join(", ")}"
+            puts "> active:     #{hook['active']}"
+            puts "> config:     #{hook['config']}"
             puts
           end unless hooks.nil?
         end
@@ -19,6 +22,7 @@ module Github
       desc "campfire user/repo events", "Add a campfire hook in the given repository. Events must be separated by commas."
       method_option :room,       :required => true
       method_option :subdomain,  :required => true
+      method_option :token,      :required => false
       def campfire(repo, events)
         handle_404 do
           check_config!
