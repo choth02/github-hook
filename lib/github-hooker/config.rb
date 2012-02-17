@@ -8,7 +8,7 @@ module Github
       end
 
       def self.config
-        @config ||= YAML.load_file(File.expand_path(config_filename))
+        @config ||= YAML.load_file(File.expand_path(filename))
       end
     end
   end

@@ -27,7 +27,7 @@ module Github
         handle_404 do
           check_config!
           events = split_events(events)
-          Github::Hooker.add_hook(repo, :name => "campfire", :events => events, :config => options)
+          Github::Hooker.add_hook(repo, :name => "campfire", :events => events, :config => options.reverse_merge("token" => Github::Hooker::Config.config['campfire_token']))
         end
       end
 

@@ -40,8 +40,13 @@ describe "github-hooker" do
 
   describe "campfire" do
     it "calls Github::Hooker with the correct arguments" do
-      Github::Hooker.stub(:add_hook).with("user/repo", {:name => "campfire", :events => ["pull_requests", "issue"], :config => {}})
+      Github::Hooker.stub(:add_hook).with("user/repo", {:name => "campfire", :events => ["pull_requests", "issue"], :config => {"token" => "token"}})
       subject.campfire("user/repo", "pull_requests, issue")
+    end
+
+    it "ignores campfire_token if --token is passed" do
+      Github::Hooker.stub(:add_hook).with("user/repo", {:name => "campfire", :events => ["pull_requests", "issue"], :config => {"token"=>"cli_token", "room"=>"ROOM", "subdomain"=>"SUBDOMAIN"}})
+      cli("campfire user/repo pull_requests,issue --room=ROOM --subdomain=SUBDOMAIN --token=cli_token")
     end
   end
 
@@ -57,5 +62,9 @@ describe "github-hooker" do
       Github::Hooker.stub(:delete_hook).with("user/repo", 1010)
       subject.delete("user/repo", 1010)
     end
+  end
+
+  def cli(string)
+    Github::Hooker::CLI.start(string.split(" "))
   end
 end
