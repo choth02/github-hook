@@ -40,20 +40,20 @@ describe "github-hooker" do
 
   describe "campfire" do
     it "calls Github::Hooker with the correct arguments" do
-      Github::Hooker.stub(:add_hook).with("user/repo", {:name => "campfire", :events => ["pull_requests", "issue"], :config=> {"token"=>"token", "room"=>"RROM", "subdomain"=>"SUBDOMAIN"}})
-      cli("campfire user/repo pull_requests,issue --room=RROM --subdomain=SUBDOMAIN")
+      Github::Hooker.stub(:add_hook).with("user/repo", {:name => "campfire", :events => ["pull_request", "issue"], :config=> {"token"=>"token", "room"=>"RROM", "subdomain"=>"SUBDOMAIN"}})
+      cli("campfire user/repo pull_request,issue --room=RROM --subdomain=SUBDOMAIN")
     end
 
     it "ignores campfire_token if --token is passed" do
-      Github::Hooker.stub(:add_hook).with("user/repo", {:name => "campfire", :events => ["pull_requests", "issue"], :config => {"token"=>"cli_token", "room"=>"ROOM", "subdomain"=>"SUBDOMAIN"}})
-      cli("campfire user/repo pull_requests,issue --room=ROOM --subdomain=SUBDOMAIN --token=cli_token")
+      Github::Hooker.stub(:add_hook).with("user/repo", {:name => "campfire", :events => ["pull_request", "issue"], :config => {"token"=>"cli_token", "room"=>"ROOM", "subdomain"=>"SUBDOMAIN"}})
+      cli("campfire user/repo pull_request,issue --room=ROOM --subdomain=SUBDOMAIN --token=cli_token")
     end
   end
 
   describe "web" do
     it "calls Github::Hooker with the correct arguments" do
-      Github::Hooker.stub(:add_hook).with("user/repo", {:name => "web", :events => ["pull_requests", "issue"], :config=> {"url"=>"http://example.com/callback"}})
-      cli("web user/repo pull_requests,issue --url=http://example.com/callback")
+      Github::Hooker.stub(:add_hook).with("user/repo", {:name => "web", :events => ["pull_request", "issue"], :config=> {"url"=>"http://example.com/callback"}})
+      cli("web user/repo pull_request,issue --url=http://example.com/callback")
     end
   end
 
