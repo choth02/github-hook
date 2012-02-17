@@ -1,7 +1,7 @@
 require "github-hooker/version"
+require "github-hooker/config"
 require 'net/http'
 require 'json'
-require 'yaml'
 require 'restclient'
 require 'active_support/core_ext/hash/reverse_merge'
 
@@ -23,16 +23,12 @@ module Github
       github_api(:delete, url)
     end
 
-    def self.config
-      @config ||= YAML.load_file(File.expand_path(config_filename))
-    end
-
     def self.github_api(method, url, options={})
       options.reverse_merge!(
-        :method => method,
-        :url => url,
-        :user => config["user"],
-        :password => config["password"]
+        :method   => method,
+        :url      => url,
+        :user     => Github::Hooker::Config.config["user"],
+        :password => Github::Hooker::Config.config["password"]
       )
       response = RestClient::Request.execute(options)
       case response.code
@@ -41,10 +37,6 @@ module Github
       when 204, 404, 500
         response
       end
-    end
-
-    def self.config_filename
-      "~/.github-hooker.yml"
     end
   end
 end

@@ -8,8 +8,8 @@ describe "github-hooker" do
   subject { Github::Hooker::CLI.new }
 
   before do
-    Github::Hooker.stub(:config_filename).and_return("/tmp/.github-hooker.yml")
-    FileUtils.touch(Github::Hooker.config_filename)
+    Github::Hooker::Config.stub(:config_filename).and_return("/tmp/.github-hooker.yml")
+    FileUtils.touch(Github::Hooker::Config.config_filename)
     stub_config!
   end
 

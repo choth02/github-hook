@@ -62,7 +62,7 @@ module Github
       end
 
       def check_config!
-        error("~/.github-hooker.yml is not present. Please set 'user', 'password' and 'campfire_token'.") unless File.exist?(File.expand_path(Github::Hooker.config_filename))
+        error("~/.github-hooker.yml is not present. Please set 'user', 'password' and 'campfire_token'.") unless File.exist?(File.expand_path(Github::Hooker::Config.filename))
       end
 
       def resource_not_found_message!
