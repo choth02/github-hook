@@ -5,8 +5,6 @@ require 'github-hooker'
 require 'github-hooker/cli'
 
 describe "github-hooker" do
-  subject { Github::Hooker::CLI.new }
-
   before do
     Github::Hooker::Config.stub(:config_filename).and_return("/tmp/.github-hooker.yml")
     FileUtils.touch(Github::Hooker::Config.config_filename)
@@ -26,7 +24,7 @@ describe "github-hooker" do
         }
       ]
       Github::Hooker.stub(:hooks).with("user/repo").and_return(hooks)
-      subject.list("user/repo")
+      cli("list user/repo")
     end
 
     it "handles 404 errors in github API" do
@@ -34,7 +32,7 @@ describe "github-hooker" do
         to_return(:status => 404, :body => "NotFound", :headers => {})
 
       $stdout.should_receive(:puts).with("Resource Not Found (404): This repository may not exist or you may not have access to it.")
-      expect { subject.list("user/non-existent-repo") }.to raise_error(SystemExit)
+      expect { cli("list user/non-existent-repo") }.to raise_error(SystemExit)
     end
   end
 
