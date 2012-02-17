@@ -2,7 +2,7 @@
 
 This is an internal gem at PlataformaTec (<http://plataformatec.com.br>).
 
-We use it to create and delete hooks in our github repositories (like campfire notifications for push and pull_requests and CI integration with web push hooks).
+We use it to create and delete hooks in our github repositories (like campfire notifications for push and pull_request and CI integration with web push hooks).
 
 ## Configuration
 
@@ -45,7 +45,7 @@ github-hooker list plataformatec/devise
 ### Create a new web hook
 
 ```
-github-hooker web plataformatec/devise "pull_requests, push" --url=http://mycallback.com/callback
+github-hooker web plataformatec/devise "pull_request, push" --url=http://mycallback.com/callback
 ```
 
 This creates a new web hook that calls the url specified by `--url`. The events that this hooks listens must be the third argument and they must be separeted by commas. 
@@ -53,7 +53,7 @@ This creates a new web hook that calls the url specified by `--url`. The events 
 ### Create a new campfire hook
 
 ```
-github-hooker campfire plataformatec/devise pull_requests,push,issue_comment --room="My Room" --subdomain="My Subdomain"
+github-hooker campfire plataformatec/devise pull_request,push,issue_comment --room="My Room" --subdomain="My Subdomain"
 ```
 
 Creates a new campfire hook. The token used for authentication with Campfire must be provided in your `~/.github-hooker.yml` (see Configuration above).
@@ -73,13 +73,13 @@ The available events that github gives us are:
 Campfire events:
 
 - push
-- pull_requests
+- pull_request
 - issues
 
 Web events:
 
 - push
-- pull_requests
+- pull_request
 - issues
 - issue_comment
 
