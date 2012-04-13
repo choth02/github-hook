@@ -1,6 +1,6 @@
 # github-hooker
 
-This is an internal gem at PlataformaTec (<http://plataformatec.com.br>).
+This is an internal gem at Plataformatec (<http://plataformatec.com.br>).
 
 We use it to create and delete hooks in our github repositories (like campfire notifications for push and pull_request and CI integration with web push hooks).
 
@@ -93,4 +93,4 @@ This gem is named after the famous [Hooker Telescope](http://en.wikipedia.org/wi
 
 ## License
 
-MIT License. Copyright 2012 Plataforma Tecnologia. http://blog.plataformatec.com.br
+MIT License. Copyright 2012 Plataformatec. http://plataformatec.com.br
