@@ -12,9 +12,11 @@ First, create `~/.github-hooker.yml` with
 user: github_username
 password: github_password
 campfire_token: campfire_api_token
+#optional api_url, default https://api.github.com
+#api_url: https://mygithubenterprise/api/v3
 ```
 
-Then you can use the command `github-hooker` to list, create web and campfire hooks or delete them. Other hooks are not yet implemented (pull requests are appreciated!).
+Then you can use the command `github-hooker` to list, create email, web and campfire hooks or delete them. Other hooks are not yet implemented (pull requests are appreciated!).
 
 ### Why I need to write my password?
 
@@ -31,6 +33,7 @@ $ github-hooker
 Tasks:
   github-hooker help [TASK]                                                  # Describe available tasks or one specific task
   github-hooker list user/repo                                               # List hooks in the given repository
+  github-hooker email user/repo events --address=ADDRESS                     # Add an email hook in the given repository. Events must be separated by commas.
   github-hooker web user/repo events --url=URL                               # Add a web hook in the given repository. Events must be separated by commas.
   github-hooker campfire user/repo events --room=ROOM --subdomain=SUBDOMAIN  # Add a campfire hook in the given repository. Events must be separated by commas.
   github-hooker delete user/repo hook_number                                 # Delete the hook from the given repository
@@ -40,6 +43,12 @@ Tasks:
 
 ```
 github-hooker list plataformatec/devise 
+```
+
+### Create a new email hook
+
+```
+github-hooker email plataformatec/devise "push" --address=email@mydomain.com
 ```
 
 ### Create a new web hook
@@ -69,6 +78,9 @@ Deletes the hook 1010 from the given repository. You can get the hook id from th
 ## Events
 
 The available events that github gives us are:
+
+Email events:
+- push
 
 Campfire events:
 

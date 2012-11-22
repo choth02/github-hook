@@ -31,6 +31,18 @@ module Github
         end
       end
 
+      desc "email user/repo events", "Add an email hook in the given repository. Events must be separated by commas."
+      method_option :address, :required => true
+      method_option :secret
+      method_option :send_from_author, :default => "1"
+      def email(repo, events)
+        handle_404 do
+          check_config!
+          events = split_events(events)
+          Github::Hooker.add_hook(repo, :name => "email", :events => events, :config => options)
+        end
+      end
+
       desc "web user/repo events", "Add a web hook in the given repository. Events must be separated by commas."
       method_option :url, :required => true
       method_option :secret

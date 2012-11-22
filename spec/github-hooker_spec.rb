@@ -36,6 +36,23 @@ describe Github::Hooker do
       subject.add_hook("user/repo", hook_options)
     end
 
+    it "adds a email hook in the given repo" do
+      WebMock.stub_request(:post, "https://user:password@api.github.com/repos/user/repo/hooks").
+        with(:body => "{\"active\":\"true\",\"name\":\"email\",\"events\":[\"push\"],\"config\":{\"address\":\"user@example.com\",\"send_from_author\":\"1\"}}").
+        to_return(:status => 201, :body => "{}", :headers => {})
+
+      hook_options = {
+        :name => "email",
+        :events => ["push"],
+        :active => "true",
+        :config => {
+          :address => "user@example.com",
+          :send_from_author => "1"
+        }
+      }
+      subject.add_hook("user/repo", hook_options)
+    end
+
     it "adds a new web hook in the given repo" do
       WebMock.stub_request(:post, "https://user:password@api.github.com/repos/user/repo/hooks").
         with(:body => "{\"active\":\"true\",\"name\":\"web\",\"events\":[\"pull_request\",\"issue\"],\"config\":{\"url\":\"http://example.com/callback\"}}").
