@@ -48,6 +48,13 @@ describe "github-hooker" do
     end
   end
 
+  describe "email" do
+    it "calls Github::Hooker with the correct arguments" do
+      Github::Hooker.stub(:add_hook).with("user/repo", {:name => "email", :events => ["push"], :config=> {"address"=>"user@example.com", "secret"=>"X-Test-github-hooker", "send_from_author" => "1"}})
+      cli("email user/repo push --address=user@example.com --secret=X-Test-github-hooker --send-from-author=1")
+    end
+  end
+
   describe "web" do
     it "calls Github::Hooker with the correct arguments" do
       Github::Hooker.stub(:add_hook).with("user/repo", {:name => "web", :events => ["pull_request", "issue"], :config=> {"url"=>"http://example.com/callback"}})
