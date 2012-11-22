@@ -24,11 +24,8 @@ module Github
     end
 
     def self.github_api(method, path, options={})
-      url = "https://api.github.com" + path
-
-      if Github::Hooker::Config.config["api_url"]
-        url = "#{Github::Hooker::Config.config["api_url"]}" + path
-      end
+      github_url = Github::Hooker::Config.config.fetch("api_url", "https://api.github.com")
+      url = github_url + path
 
       options.reverse_merge!(
         :method   => method,
