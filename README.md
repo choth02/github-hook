@@ -1,4 +1,4 @@
-# github-hooker
+# github-hook
 
 This is an internal gem at Plataformatec (<http://plataformatec.com.br>).
 
@@ -6,7 +6,7 @@ We use it to create and delete hooks in our github repositories (like campfire n
 
 ## Configuration
 
-First, create `~/.github-hooker.yml` with
+First, create `~/.github-hook.yml` with
 
 ```yml
 user: github_username
@@ -16,7 +16,7 @@ campfire_token: campfire_api_token
 #api_url: https://mygithubenterprise/api/v3
 ```
 
-Then you can use the command `github-hooker` to list, create email, web and campfire hooks or delete them. Other hooks are not yet implemented (pull requests are appreciated!).
+Then you can use the command `github-hook` to list, create email, web and campfire hooks or delete them. Other hooks are not yet implemented (pull requests are appreciated!).
 
 ### Why I need to write my password?
 
@@ -29,32 +29,32 @@ The user specified MUST have administration rights for the repositories you want
 The available commands are:
 
 ```
-$ github-hooker
+$ github-hook
 Tasks:
-  github-hooker help [TASK]                                                  # Describe available tasks or one specific task
-  github-hooker list user/repo                                               # List hooks in the given repository
-  github-hooker email user/repo events --address=ADDRESS                     # Add an email hook in the given repository. Events must be separated by commas.
-  github-hooker web user/repo events --url=URL                               # Add a web hook in the given repository. Events must be separated by commas.
-  github-hooker campfire user/repo events --room=ROOM --subdomain=SUBDOMAIN  # Add a campfire hook in the given repository. Events must be separated by commas.
-  github-hooker delete user/repo hook_number                                 # Delete the hook from the given repository
+  github-hook help [TASK]                                                  # Describe available tasks or one specific task
+  github-hook list user/repo                                               # List hooks in the given repository
+  github-hook email user/repo events --address=ADDRESS                     # Add an email hook in the given repository. Events must be separated by commas.
+  github-hook web user/repo events --url=URL                               # Add a web hook in the given repository. Events must be separated by commas.
+  github-hook campfire user/repo events --room=ROOM --subdomain=SUBDOMAIN  # Add a campfire hook in the given repository. Events must be separated by commas.
+  github-hook delete user/repo hook_number                                 # Delete the hook from the given repository
 ```
 
 ### List hooks
 
 ```
-github-hooker list plataformatec/devise 
+github-hook list plataformatec/devise 
 ```
 
 ### Create a new email hook
 
 ```
-github-hooker email plataformatec/devise "push" --address=email@mydomain.com
+github-hook email plataformatec/devise "push" --address=email@mydomain.com
 ```
 
 ### Create a new web hook
 
 ```
-github-hooker web plataformatec/devise "pull_request, push" --url=http://mycallback.com/callback
+github-hook web plataformatec/devise "pull_request, push" --url=http://mycallback.com/callback
 ```
 
 This creates a new web hook that calls the url specified by `--url`. The events that this hooks listens must be the third argument and they must be separeted by commas. 
@@ -62,18 +62,18 @@ This creates a new web hook that calls the url specified by `--url`. The events 
 ### Create a new campfire hook
 
 ```
-github-hooker campfire plataformatec/devise pull_request,push,issue_comment --room="My Room" --subdomain="My Subdomain"
+github-hook campfire plataformatec/devise pull_request,push,issue_comment --room="My Room" --subdomain="My Subdomain"
 ```
 
-Creates a new campfire hook. The token used for authentication with Campfire must be provided in your `~/.github-hooker.yml` (see Configuration above).
+Creates a new campfire hook. The token used for authentication with Campfire must be provided in your `~/.github-hook.yml` (see Configuration above).
 
 ### Delete a hook
 
 ```
-github-hooker delete plataformatec/devise 1010
+github-hook delete plataformatec/devise 1010
 ```
 
-Deletes the hook 1010 from the given repository. You can get the hook id from the url listed in `github-hooker list user/repo`.
+Deletes the hook 1010 from the given repository. You can get the hook id from the url listed in `github-hook list user/repo`.
 
 ## Events
 
@@ -97,12 +97,6 @@ Web events:
 
 Github's documentation about hooks (http://developer.github.com/v3/repos/hooks/ and https://api.github.com/hooks) does not have all these hooks listed, but they are working with us.
 
-## Naming
-
-This gem is named after the famous [Hooker Telescope](http://en.wikipedia.org/wiki/Hooker_Telescope), in operation in the Mount Wilson Observatory. Edwin Hubble used this telescope to discover the expansion of the universe.
-
-![Hooker Telescope](http://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/100inchHooker.jpg/250px-100inchHooker.jpg)
-
 ## License
 
-MIT License. Copyright 2012 Plataformatec. http://plataformatec.com.br
+MIT License. Copyright 2012-2014 Plataformatec. http://plataformatec.com.br

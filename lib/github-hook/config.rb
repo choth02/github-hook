@@ -1,10 +1,10 @@
 require 'yaml'
 
 module Github
-  module Hooker
+  module Hook
     module Config
       def self.filename
-        "~/.github-hooker.yml"
+        "~/.github-hook.yml"
       end
 
       def self.config

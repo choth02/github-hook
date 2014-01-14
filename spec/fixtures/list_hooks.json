@@ -59,7 +59,7 @@
         "config": {
             "address": "user@example.com",
             "send_from_author": "1",
-            "secret": "X-Test-github-hooker"
+            "secret": "X-Test-github-hook"
         },
         "id": 561345,
         "url": "https://api.github.com/repos/user/repo/hooks/561345",

@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'github-hooker'
+require 'github-hook'
 
-describe Github::Hooker do
+describe Github::Hook do
   context "given a valid credential" do
     before do
       stub_config!

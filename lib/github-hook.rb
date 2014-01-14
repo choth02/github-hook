@@ -1,12 +1,12 @@
-require "github-hooker/version"
-require "github-hooker/config"
+require "github-hook/version"
+require "github-hook/config"
 require 'net/http'
 require 'json'
 require 'restclient'
 require 'active_support/core_ext/hash/reverse_merge'
 
 module Github
-  module Hooker
+  module Hook
     def self.hooks(repo)
       path = "/repos/#{repo}/hooks"
       github_api(:get, path)
@@ -24,14 +24,14 @@ module Github
     end
 
     def self.github_api(method, path, options={})
-      github_url = Github::Hooker::Config.config.fetch("api_url", "https://api.github.com")
+      github_url = Github::Hook::Config.config.fetch("api_url", "https://api.github.com")
       url = github_url + path
 
       options.reverse_merge!(
         :method   => method,
         :url      => url,
-        :user     => Github::Hooker::Config.config["user"],
-        :password => Github::Hooker::Config.config["password"]
+        :user     => Github::Hook::Config.config["user"],
+        :password => Github::Hook::Config.config["password"]
       )
       response = RestClient::Request.execute(options)
       case response.code

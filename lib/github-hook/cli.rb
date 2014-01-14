@@ -1,11 +1,11 @@
 module Github
-  module Hooker
+  module Hook
     class CLI < Thor
       desc "list user/repo", "List hooks in the given repository"
       def list(repo)
         handle_404 do
           check_config!
-          hooks = Github::Hooker.hooks(repo)
+          hooks = Github::Hook.hooks(repo)
           hooks.each do |hook|
             puts "#{hook['url']}"
             puts "> name:       #{hook['name']}"
@@ -27,7 +27,7 @@ module Github
         handle_404 do
           check_config!
           events = split_events(events)
-          Github::Hooker.add_hook(repo, :name => "campfire", :events => events, :config => options.reverse_merge("token" => Github::Hooker::Config.config['campfire_token']))
+          Github::Hook.add_hook(repo, :name => "campfire", :events => events, :config => options.reverse_merge("token" => Github::Hook::Config.config['campfire_token']))
         end
       end
 
@@ -39,7 +39,7 @@ module Github
         handle_404 do
           check_config!
           events = split_events(events)
-          Github::Hooker.add_hook(repo, :name => "email", :events => events, :config => options)
+          Github::Hook.add_hook(repo, :name => "email", :events => events, :config => options)
         end
       end
 
@@ -50,7 +50,7 @@ module Github
         handle_404 do
           check_config!
           events = split_events(events)
-          Github::Hooker.add_hook(repo, :name => "web", :events => events, :config => options)
+          Github::Hook.add_hook(repo, :name => "web", :events => events, :config => options)
         end
       end
 
@@ -58,7 +58,7 @@ module Github
       def delete(repo, hook)
         handle_404 do
           check_config!
-          Github::Hooker.delete_hook(repo, hook)
+          Github::Hook.delete_hook(repo, hook)
         end
       end
 
@@ -74,7 +74,7 @@ module Github
       end
 
       def check_config!
-        error("~/.github-hooker.yml is not present. Please set 'user', 'password' and 'campfire_token'.") unless File.exist?(File.expand_path(Github::Hooker::Config.filename))
+        error("~/.github-hook.yml is not present. Please set 'user', 'password' and 'campfire_token'.") unless File.exist?(File.expand_path(Github::Hook::Config.filename))
       end
 
       def resource_not_found_message!

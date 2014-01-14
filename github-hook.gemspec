@@ -1,17 +1,17 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "github-hooker/version"
+require "github-hook/version"
 
 Gem::Specification.new do |s|
-  s.name        = "github-hooker"
-  s.version     = Github::Hooker::VERSION
+  s.name        = "github-hook"
+  s.version     = Github::Hook::VERSION
   s.authors     = ["George Guimarães"]
   s.email       = ["george@plataformatec.com.br"]
   s.homepage    = ""
   s.summary     = %q{ hook them all }
-  s.description = %q{ github-hooker creates and deletes hooks in your github repository }
+  s.description = %q{ github-hook creates and deletes hooks in your github repository }
 
-  s.rubyforge_project = "github-hooker"
+  s.rubyforge_project = "github-hook"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

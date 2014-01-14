@@ -1,5 +1,5 @@
 module Github
-  module Hooker
+  module Hook
     VERSION = "0.1.2"
   end
 end

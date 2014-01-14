@@ -2,9 +2,9 @@
 
 $:.unshift File.expand_path("../../lib", __FILE__)
 require "thor"
-require 'github-hooker'
-require 'github-hooker/cli'
+require 'github-hook'
+require 'github-hook/cli'
 
-Github::Hooker::CLI.start
+Github::Hook::CLI.start
 
 # :vim:ft=ruby
