@@ -6,8 +6,6 @@ require 'github-hook/cli'
 
 describe "github-hook" do
   before do
-    Github::Hook::Config.stub(:config_filename).and_return("/tmp/.github-hook.yml")
-    FileUtils.touch(Github::Hook::Config.config_filename)
     stub_config!
   end
 
