@@ -3,12 +3,10 @@ require 'yaml'
 module Github
   module Hook
     module Config
-      def self.filename
-        "~/.github-hook.yml"
-      end
+      FILENAME = '~/.github-hook.yml'
 
       def self.config
-        @config ||= YAML.load_file(File.expand_path(filename))
+        @config ||= YAML.load_file(File.expand_path(FILENAME))
       end
     end
   end
