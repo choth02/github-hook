@@ -10,7 +10,7 @@ First, create `~/.github-hook.yml` with
 
 ```yml
 user: github_username
-password: github_password
+password: github_personal_access_token_see_below
 campfire_token: campfire_api_token
 #optional api_url, default https://api.github.com
 #api_url: https://mygithubenterprise/api/v3
@@ -18,9 +18,9 @@ campfire_token: campfire_api_token
 
 Then you can use the command `github-hook` to list, create email, web and campfire hooks or delete them. Other hooks are not yet implemented (pull requests are appreciated!).
 
-### Why I need to write my password?
+### How to create Personal Access Token
 
-The hook API is only accessible by the v3 Github API. There's a Oauth2 authentication method, but in order to use that you would need to set up a new application with Github, and then collect the token by an http callback (that must be accessible on the web). For the sake of simplicity, we use the other way to authenticate (http auth basic).
+Go to the [Authorized Applications](https://github.com/settings/applications) page and click "Create new token" under "Personal Access Tokens".
 
 ## Usage
 
