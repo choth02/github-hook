@@ -34,7 +34,7 @@ Tasks:
   github-hook help [TASK]                                                  # Describe available tasks or one specific task
   github-hook list user/repo                                               # List hooks in the given repository
   github-hook email user/repo events --address=ADDRESS                     # Add an email hook in the given repository. Events must be separated by commas.
-  github-hook web user/repo events --url=URL                               # Add a web hook in the given repository. Events must be separated by commas.
+  github-hook web user/repo events --url=URL --content-type=json           # Add a web hook in the given repository. Events must be separated by commas. Content type defaults to form encoded.
   github-hook campfire user/repo events --room=ROOM --subdomain=SUBDOMAIN  # Add a campfire hook in the given repository. Events must be separated by commas.
   github-hook delete user/repo hook_number                                 # Delete the hook from the given repository
 ```
@@ -54,10 +54,10 @@ github-hook email plataformatec/devise "push" --address=email@mydomain.com
 ### Create a new web hook
 
 ```
-github-hook web plataformatec/devise "pull_request, push" --url=http://mycallback.com/callback
+github-hook web plataformatec/devise "pull_request, push" --url=http://mycallback.com/callback --content-type=json
 ```
 
-This creates a new web hook that calls the url specified by `--url`. The events that this hooks listens must be the third argument and they must be separeted by commas. 
+This creates a new web hook that calls the url specified by `--url` with a content type of json. The events that this hooks listens must be the third argument and they must be separated by commas.
 
 ### Create a new campfire hook
 
