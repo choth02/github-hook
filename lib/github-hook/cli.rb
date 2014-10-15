@@ -43,8 +43,9 @@ module Github
         end
       end
 
-      desc "web user/repo events", "Add a web hook in the given repository. Events must be separated by commas."
+      desc "web user/repo events", "Add a web hook in the given repository. Events must be separated by commas. Content type defaults to form encoded."
       method_option :url, :required => true
+      method_option :content_type
       method_option :secret
       def web(repo, events)
         handle_404 do
