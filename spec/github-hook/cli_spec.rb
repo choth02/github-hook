@@ -55,8 +55,8 @@ describe "github-hook" do
 
   describe "web" do
     it "calls Github::Hook with the correct arguments" do
-      Github::Hook.stub(:add_hook).with("user/repo", {:name => "web", :events => ["pull_request", "issue"], :config=> {"url"=>"http://example.com/callback"}})
-      cli("web user/repo pull_request,issue --url=http://example.com/callback")
+      Github::Hook.stub(:add_hook).with("user/repo", {:name => "web", :events => ["pull_request", "issue"], :config=> {"url"=>"http://example.com/callback", "content_type" => "json" }})
+      cli("web user/repo pull_request,issue --url=http://example.com/callback --content-type json")
     end
   end
 
